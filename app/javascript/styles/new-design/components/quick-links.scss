@@ -1,0 +1,22 @@
+.quick-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 1rem;
+  list-style-type: none;
+  padding-block: 2rem;
+  position: relative;
+  z-index: 5;
+  padding-left: 0;
+}
+
+.quick-links__item {
+  color: $primary;
+  font-weight: 700;
+}
+
+.quick-links__link {
+  color: $primary;
+  font-weight: 700;
+}
