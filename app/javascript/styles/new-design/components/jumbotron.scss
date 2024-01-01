@@ -1,10 +1,26 @@
 .jumbotron {
+  --border-radius: 32px;
   position: relative;
   background-color: $primary;
   color: $white;
-  overflow: hidden;
-  margin-bottom: 0;
   padding-top: 1rem;
+  border-radius: var(--border-radius);
+  padding: 15px;
+  margin-block: 2rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/mask.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    border-radius: var(--border-radius);
+  }
 
   @include media-breakpoint-down(md) {
     padding: 2.5rem 0;
@@ -14,7 +30,7 @@
     color: $white;
   }
 
-  &.jumbotron-full-image {
+  &.jumbotron--full-image {
     padding: 0;
 
     @include media-breakpoint-down(md) {
@@ -31,10 +47,26 @@
   }
 }
 
+.jumbotron--light {
+  background-color: $blue-sky;
+  color: $primary;
+
+  &::before {
+    opacity: 0.2;
+  }
+
+  .jumbotron__text .underline {
+    &::after {
+      background-image: url(/assets/underline-blue.svg);
+    }
+  }
+}
+
 .jumbotron__content {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-block: 30px;
   @include media-breakpoint-down(md) {
     justify-content: center;
   }
@@ -42,17 +74,50 @@
 
 .jumbotron__text {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: rem(565px);
-  padding: 3rem 1rem 0;
 
   @include media-breakpoint-down(md) {
     max-width: 100%;
   }
 
   @include media-breakpoint-down(sm) {
-    width: 100%;
     padding: 0;
+  }
+
+  .h1 {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: rem(48px);
+    @include media-breakpoint-down(sm) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .h2 {
+    display: block;
+    font-size: rem(32px);
+    font-weight: 600;
+    @include media-breakpoint-down(sm) {
+      font-size: 1.7rem;
+    }
+  }
+
+  .underline {
+    --underline-img-size: 15px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: calc(-2 * var(--underline-img-size));
+      left: 0;
+      width: calc(100% + var(--underline-img-size));
+      height: 30px;
+      background-image: url(/assets/underline.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
   }
 }
 
@@ -71,12 +136,37 @@
   }
 }
 
-.header__objects-image {
+.header__objects-image--invoice {
   position: absolute;
   bottom: 0;
-  left: 52%;
+  right: -2%;
   max-width: none;
   z-index: 1;
+}
+
+.header__objects-image--girl {
+  position: absolute;
+  bottom: 0;
+  left: 62%;
+  z-index: 2;
+}
+
+.header__objects-image--men {
+  position: absolute;
+  bottom: 0;
+  left: 55%;
+  z-index: 2;
+}
+
+.header__objects-image--arrow {
+  position: absolute;
+  bottom: -20%;
+  left: -14%;
+  z-index: 2;
+}
+
+.h1 + .jumbotron__cta {
+  margin-top: 1.5rem;
 }
 
 .jumbotron__cta {
