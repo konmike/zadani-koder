@@ -1,0 +1,126 @@
+.form-wrapper {
+  border: 1px solid #bbd2e1b8;
+  padding: rem(48px) rem(40px);
+  border-radius: 12px;
+
+  @include media-breakpoint-down(sm) {
+    padding: rem(40px) rem(20px);
+  }
+}
+
+.form__header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 1rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+
+  &::before {
+    content: '';
+    display: block;
+    background-image: url('../images/basic-info-ico.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.el-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-auto-flow: column;
+  column-gap: 3rem;
+  row-gap: 2rem;
+  margin-top: 2.5rem;
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
+}
+
+.el-form .el-form-item {
+  margin-bottom: 0;
+}
+
+.el-form .el-form-item:nth-child(3),
+.el-form .el-form-item:nth-child(4) {
+  grid-row: 3/4;
+  grid-column: 1/2;
+}
+
+.el-form .el-form-item:nth-child(4) {
+  justify-self: end;
+
+  @include media-breakpoint-down(md) {
+    grid-row: 4/5;
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-row: 3/4;
+  }
+
+  @include media-breakpoint-down(xs) {
+    grid-row: 4/5;
+  }
+}
+
+.el-form .el-form-item:nth-child(6) {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  width: 48%;
+
+  @include media-breakpoint-down(sm) {
+    grid-row: 5/6;
+    grid-column: 1/2;
+  }
+
+  @include media-breakpoint-down(xs) {
+    grid-row: 6/7;
+  }
+}
+
+.el-form .el-form-item--half-size {
+  width: 48%;
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 48%;
+  }
+
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+  }
+}
+
+.el-form .el-form-item:last-child {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  align-self: center;
+  justify-self: end;
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+  font-weight: 700;
+  font-size: 16px;
+
+  @include media-breakpoint-down(md) {
+    grid-row: 2/3;
+    width: 48%;
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-row: 5/6;
+    grid-column: 1/2;
+  }
+
+  @include media-breakpoint-down(xs) {
+    grid-row: 6/7;
+  }
+}

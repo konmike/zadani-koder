@@ -8,25 +8,38 @@
       spacing ? 'el-form-item--' + spacing : '',
       radio ? 'el-form-item--radio' : '',
       offset ? 'el-form-item--offset' + offsetSize : '',
-      vertical ? 'el-form-item--vertical': '',
+      vertical ? 'el-form-item--vertical' : '',
       errorStyled ? 'el-form-item--error-styled' : '',
+      adaptivePlaceholder ? 'el-form-item--adaptive-placeholder' : '',
+      optional ? 'el-form-item--optional' : 'el-form-item--required',
+      halfSize ? 'el-form-item--half-size' : ''
     ]"
     :error="errorMessage"
+    :data-validation-label="
+      optional
+        ? $t('form.invoiceForm.fields.validation.optional')
+        : $t('form.invoiceForm.fields.validation.required')
+    "
   >
     <template v-if="floatingLabel">
       <div :class="['el-input', focused || hasInputValue ? 'is-focused' : '']">
-        <slot
-          :slot-handle-focus="handleFocus"
-          :slot-handle-blur="handleBlur"
-        />
-        <span :class="['el-input__label', focused || hasInputValue ? 'is-floating' : '']">{{ label }}</span>
+        <slot :slot-handle-focus="handleFocus" :slot-handle-blur="handleBlur" />
+        <span
+          :class="[
+            'el-input__label',
+            focused || hasInputValue ? 'is-floating' : ''
+          ]"
+        >
+          {{ label }}
+        </span>
       </div>
     </template>
     <template v-else-if="!floatingLabel">
-      <template slot="label">
-        <slot name="label" />
-      </template>
-      <slot />
+      <slot>
+        <template slot="label">
+          <slot name="label" />
+        </template>
+      </slot>
     </template>
     <div
       slot="error"
@@ -35,17 +48,9 @@
       data-test="form_input_error_message"
     >
       <template v-if="errorMessage">
-        <Alert
-          v-if="errorAlert"
-          type="error"
-          show-icon
-          :closable="false"
-        >
+        <Alert v-if="errorAlert" type="error" show-icon :closable="false">
           <template slot="title">
-            <span
-              v-html="errorMessage"
-              @click="errorOnClick"
-            />
+            <span v-html="errorMessage" @click="errorOnClick" />
           </template>
         </Alert>
         <span v-else>
@@ -53,25 +58,14 @@
         </span>
       </template>
       <template v-else-if="errorStyled">
-        <InputHelp
-          v-if="errorStyled"
-          type="box"
-          state="error"
-        >
+        <InputHelp v-if="errorStyled" type="box" state="error">
           {{ $t(`errors.${slotProps.error}`) }}
         </InputHelp>
       </template>
       <template v-else-if="errorAlert">
-        <Alert
-          v-if="errorAlert"
-          type="error"
-          show-icon
-          :closable="false"
-        >
+        <Alert v-if="errorAlert" type="error" show-icon :closable="false">
           <template slot="title">
-            <span
-              v-html="$t(`errors.${slotProps.error}`)"
-            />
+            <span v-html="$t(`errors.${slotProps.error}`)" />
           </template>
         </Alert>
       </template>
@@ -89,69 +83,71 @@
 </template>
 
 <script>
-import { FormItem } from 'element-ui';
+import { FormItem } from 'element-ui'
 
 export default {
   components: {
-    FormItem,
+    FormItem
   },
   props: {
     prop: String,
     label: String,
     inlineForm: Boolean,
+    adaptivePlaceholder: Boolean,
+    optional: Boolean,
     radio: Boolean,
     offset: [Boolean, String],
     vertical: Boolean,
+    halfSize: Boolean,
     spacing: {
-      type: String,
+      type: String
     },
     errorMessage: String,
     help: String,
     inputNarrow: Boolean,
     errorStyled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     errorAlert: {
       type: Boolean,
-      default: false,
+      default: false
     },
     errorOnClick: {
       type: Function,
-      default() {},
+      default () {}
     },
     floatingLabel: {
       type: Boolean,
-      default: false,
+      default: false
     },
     hasInputValue: {
       type: Boolean,
-      default: false,
-    },
-
+      default: false
+    }
   },
-  data() {
+  data () {
     return {
-      focused: false,
-    };
+      focused: false
+    }
   },
   computed: {
-    offsetSize() {
+    offsetSize () {
       if (this.offset === true) {
-        return '';
+        return ''
       }
-      return `--${this.offset}`;
-    },
+      return `--${this.offset}`
+    }
   },
   methods: {
-    handleFocus() {
-      this.focused = true;
+    handleFocus () {
+      this.focused = true
     },
-    handleBlur() {
-      this.focused = false;
-    },
-  },
-};
+    handleBlur () {
+      this.focused = false
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -386,16 +382,6 @@ export default {
     max-width: 100%;
     flex-basis: 100%;
   }
-
-  & + .el-form-item__content {
-    max-width: 66%;
-    flex-basis: 66%;
-
-    @include res(xs-only, $--breakpoints-spec) {
-      max-width: 100%;
-      flex-basis: 100%;
-    }
-  }
 }
 
 .el-form-item--error-styled {
@@ -436,7 +422,7 @@ export default {
   .el-input__inner {
     font-weight: 700;
     border-radius: 8px;
-    padding: 1.4em .8rem;
+    padding: 1.4em 0.8rem;
   }
 
   .el-form-item__label {
@@ -445,7 +431,7 @@ export default {
     top: -12px;
     left: 8px;
     background: #ffffff;
-    padding: 0 .2rem;
+    padding: 0 0.2rem;
     z-index: 1;
   }
 
@@ -460,10 +446,10 @@ export default {
   transform: scale(1);
   left: 9px;
   bottom: 12px;
-  transition: transform .3s, bottom .3s;
+  transition: transform 0.3s, bottom 0.3s;
   color: $blue-light;
   background: #ffffff;
-  padding: 0 .3rem;
+  padding: 0 0.3rem;
   pointer-events: none;
   max-width: 95%;
   white-space: nowrap;
@@ -473,7 +459,94 @@ export default {
 
 .el-input.is-focused .el-input__label {
   bottom: 100%;
-  transform: scale(.92) translate3d(-9px, 8px, 0);
+  transform: scale(0.92) translate3d(-9px, 8px, 0);
   color: $--color-text-regular;
+}
+
+.el-form-item--optional {
+  position: relative;
+
+  &::after {
+    content: attr(data-validation-label);
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: 14px;
+    font-size: 0.9rem;
+    padding-inline: 0.2rem;
+    background-color: white;
+    color: $--color-text-blue;
+  }
+}
+.el-input__inner {
+  border-radius: 8px;
+}
+
+.el-form-item--adaptive-placeholder {
+  position: relative;
+
+  > .el-form-item__label {
+    display: block;
+    margin-bottom: 0;
+    padding: 0 0.2rem;
+    pointer-events: none;
+    background: white;
+    font-weight: 400;
+    color: #909399;
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    font-size: 0.9rem;
+    z-index: 4;
+    transition: all 150ms;
+    max-width: 100%;
+
+    &:has(+ .el-form-item__content
+        > .el-input
+        > .el-input__inner[type='text']:placeholder-shown),
+    &:has(+ .el-form-item__content
+        > .el-select
+        > .el-input
+        > .el-input__inner[type='text']:placeholder-shown) {
+      top: 15px;
+      font-size: 1rem;
+    }
+
+    &:has(+ .el-form-item__content
+        > .el-input
+        > .el-input__inner[type='text']:focus) {
+      top: -8px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .el-input {
+    position: relative;
+  }
+
+  .el-input__inner[type='text'] {
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(3em + 2px);
+    margin: 0;
+    padding: 6px;
+    padding-left: 12px;
+    border: 1px solid $form-field-border-color;
+    border-radius: $form-field-border-radius;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    resize: none;
+    outline: none;
+
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+  .el-input--suffix.is-focus .el-input__suffix,
+  .el-input:not(.el-input--suffix) .el-input__inner[type='text']:focus,
+  .el-date-editor .el-input__inner[type='text']:focus {
+    border-color: $--color-primary;
+  }
 }
 </style>

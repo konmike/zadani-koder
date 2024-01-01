@@ -1,14 +1,14 @@
 <script>
-import { Select } from 'element-ui';
+import { Select } from 'element-ui'
 
 export default {
   extends: Select,
   computed: {
-    iconClass() {
-      return this.visible ? 'arrow-up is-reverse' : 'arrow-up';
-    },
-  },
-};
+    iconClass () {
+      return this.visible ? 'arrow-up is-reverse' : 'arrow-up'
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -38,10 +38,14 @@ export default {
   .el-input__suffix {
     width: rem(32px);
     right: 0;
-    background-color: $--color-primary;
-    border-radius: 0 4px 4px 0;
+    background-color: $--color-white;
+    border: 1px solid $form-field-border-color;
+    border-left: none;
+    border-radius: 0 $form-field-border-radius $form-field-border-radius 0;
     .el-input__icon {
       font-weight: 700;
+      color: $--color-primary;
+      margin-right: 15px;
     }
   }
 }
