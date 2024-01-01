@@ -1,18 +1,21 @@
 footer.footer
-  .container
     .footer__wrapper
-      .footer__logo
-        = link_to root_path
-          = image_tag 'logo-square.svg', alt: t('.company_name_html'), width: '121', height: '121'
+      ul.quick-links
+        li.quick-links__item
+          = link_to t('.quick_links_invoice_templates'), root_path, class: 'quick-links__link'
+        li.quick-links__item
+          = link_to t('.quick_links_price_list'), root_path, class: 'quick-links__link'
+        li.quick-links__item
+          = link_to t('.quick_links_news'), root_path, class: 'quick-links__link'
+        li.quick-links__item
+          = link_to t('.quick_links_manuals'), root_path, class: 'quick-links__link'
+        li.quick-links__item
+          = link_to t('.quick_links_issues'), root_path, class: 'quick-links__link'
+        li.quick-links__item
+          = link_to t('.quick_links_business_newsletter'), root_path, class: 'quick-links__link'
 
       .footer-menu-wrapper
         .footer-menu
-          .footer-menu__col
-            .footer-menu__item
-              a.footer-menu__link target="_blank" rel="noreferrer noopener" href="https://www.facebook.com/FakturaOnline" = t('.link_11')
-            .footer-menu__item
-              a.footer-menu__link target="_blank" rel="noreferrer noopener" href="https://www.linkedin.com/company/fakturaonline-cz" = t('.link_12')
-
           .footer-menu__col
             .footer-menu__item
               strong = t('.heading_2')
@@ -54,14 +57,30 @@ footer.footer
               strong = t('.heading_5')
             .footer-menu__item
               a.footer-menu__link href="https://api.fakturaonline.cz" target="_blank" = t('.link_14')
-            .footer-menu__item
+            .footer-menu__item.footer-menu__item--top-indent
               strong = t('.heading_6')
             .footer-menu__item
               = link_to t('.link_15'), root_path, class: 'footer-menu__link'
 
-    .footer__lang-n-copy
-      .footer__copyright
-        = link_to root_path, class: 'footer__brand'
-          |©
-          =<> Date.today.year
-          strong = t('.company_name_html')
+          .footer-menu__col
+            .footer-menu__item
+                strong = t('.heading_1')  
+            .footer-menu__item
+              a.footer-menu__link target="_blank" rel="noreferrer noopener" href="https://www.facebook.com/FakturaOnline" = t('.link_11')
+            .footer-menu__item
+              a.footer-menu__link target="_blank" rel="noreferrer noopener" href="https://www.linkedin.com/company/fakturaonline-cz" = t('.link_12')
+            .footer-menu__item.footer-menu__item--top-indent
+              == image_tag 'flag-czech.png', alt: t('.flag_czech_alt'), width: '24px', height: '24px'
+      .footer-info-section
+        .footer__logo
+          = link_to root_path
+            == image_tag 'fakturaonline_logo.svg', alt: t('.company_name_html'), width: t('.logo_width'), height: t('.logo_height')
+        .footer__copyright
+          = link_to root_path, class: 'footer__brand'
+            |©
+            =<> Date.today.year
+            == t('.company_name_html')
+        .footer__contact 
+          = mail_to 'podpora@fakturaonline.cz', 'podpora@fakturaonline.cz', class: 'footer__link'
+
+    

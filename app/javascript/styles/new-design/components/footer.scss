@@ -1,17 +1,19 @@
-footer {
+.footer {
+  @extend .container;
   flex-shrink: 0;
   background-color: $white;
-  padding: 40px 0;
-  border-top: 1px solid $gray-200;
+  padding-block: 40px 20px;
   position: relative;
   color: $--color-text-primary;
 }
 
 .footer__wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid $blue-light;
+
   @include media-breakpoint-down(sm) {
     justify-content: center;
     align-items: center;
@@ -38,6 +40,8 @@ footer {
   flex: 1;
   padding-left: 30px;
   padding-right: 30px;
+  align-self: normal;
+
   @include media-breakpoint-down(md) {
     padding-right: 0;
   }
@@ -74,6 +78,10 @@ footer {
   @include media-breakpoint-down(sm) {
     margin-top: 4px;
   }
+
+  &--top-indent {
+    margin-top: 1rem;
+  }
 }
 
 .footer-menu__link {
@@ -85,34 +93,56 @@ footer {
   }
 }
 
-.footer__logo {
+.footer-info-section {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: rem(45px);
+  margin-top: 1.5rem;
+  width: 100%;
+
+  @include media-breakpoint-down(md) {
+    padding-inline: rem(10px);
+    justify-content: center;
+  }
+
   @include media-breakpoint-down(sm) {
-    order: 1;
-    margin-top: 15px;
-    margin-right: 30px;
-    img {
-      max-width: 80px;
-    }
+    flex-flow: column wrap;
   }
 }
 
-.footer__lang-n-copy {
-  text-align: right;
-  @include media-breakpoint-down(md) {
-    width: 100%;
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    text-align: left;
-  }
+.footer__logo {
+  background-color: $blue-light;
+  padding-inline: 0.5rem;
+  padding-block: 0.25rem;
+  margin-right: 0.5rem;
+
   @include media-breakpoint-down(sm) {
-    margin-top: 15px;
-    width: auto;
+    order: 3;
+  }
+}
+
+.footer__copyright {
+  margin-right: auto;
+  @include media-breakpoint-down(md) {
+    margin-right: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
     order: 2;
-    display: block;
-    text-align: center;
   }
-  @media (max-width: 550px) {
-    text-align: left;
+}
+
+.footer__contact {
+  @include media-breakpoint-down(sm) {
+    order: 1;
   }
+}
+
+.footer__contact > .footer__link {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
 }
