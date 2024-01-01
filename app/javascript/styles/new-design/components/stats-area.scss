@@ -1,6 +1,6 @@
 .stats-area {
   width: 100%;
-  max-width: $container-width + (4 * $gutter-width);
+  // max-width: $container-width + (4 * $gutter-width);
   padding: 3.2rem 1rem 3.2rem 1rem;
   margin: 0 auto;
 }
@@ -8,12 +8,10 @@
 .stats-area--blue {
   margin-top: rem(30px);
   border-radius: rem(8px);
-  background-color: $blue;
-  color: $white;
+  background-color: $blue-100;
 }
 
 .stats-area__wrapper {
-  border-bottom: 2px solid $blue-sky;
   background-color: $white;
 }
 
@@ -22,6 +20,8 @@
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
+  row-gap: rem(30px);
+
   @include media-breakpoint-down(lg) {
     justify-content: center;
   }
@@ -45,16 +45,17 @@
   flex-direction: column;
   max-width: 20%;
   flex: 0 0 20%;
+  row-gap: rem(10px);
 
   @include media-breakpoint-down(lg) {
     max-width: 33%;
     flex: 0 0 33%;
-    margin-bottom: 1rem;
   }
 
   @include media-breakpoint-down(sm) {
     max-width: 50%;
     flex: 0 0 50%;
+    row-gap: 0;
   }
 
   @include media-breakpoint-down(xs) {
@@ -77,6 +78,7 @@
 
   p {
     margin-bottom: 0;
+    color: $gray-700;
   }
 }
 
