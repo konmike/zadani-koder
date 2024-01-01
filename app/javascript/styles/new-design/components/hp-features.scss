@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 4rem;
 }
 
 .hp-features__single {
@@ -15,7 +16,6 @@
   flex-wrap: wrap;
   max-width: 45%;
   flex: 0 0 45%;
-  margin-bottom: 4rem;
 
   @include media-breakpoint-down(md) {
     max-width: 100%;
@@ -38,9 +38,9 @@
 .hp-features__text {
   flex: 1;
 
-  strong {
+  h4 {
     font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-weight: 700;
   }
 }
