@@ -1,6 +1,5 @@
 .navbar {
   background-color: $white;
-  border-bottom: 1px solid $blue-light;
   display: block;
   flex-flow: column;
   padding: 0;
@@ -13,44 +12,36 @@
   top: -60px;
 }
 
-.navbar__content {
+.navbar .navbar__content {
   @extend .container;
   display: flex;
   align-items: center;
-  @include media-breakpoint-down(xs) {
-    justify-content: center !important;
-  }
-}
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: rem(15px) 6rem;
 
-.navbar .navbar__content {
-  flex-wrap: nowrap;
+  @include media-breakpoint-down(md) {
+    padding-inline: 2rem;
+  }
+
+  @include media-breakpoint-down(xs) {
+    justify-content: center;
+    gap: 1rem;
+    padding-inline: 0;
+  }
 }
 
 .navbar__logo {
   display: block;
   max-width: 280px;
-
-  @include media-breakpoint-down(xs) {
-    max-width: 164px;
-    display: none;
-  }
-}
-
-.mobile-logo {
-  display: block;
-  margin-left: -10px;
-
-  @include media-breakpoint-up(sm) {
-    display: none;
-  }
 }
 
 .navbar-cta {
-  margin: 0 auto 0 20px;
-  padding: 3px 0 4px 20px;
-  color: darken($--color-lighter-blue-new, 2%);
-  border-left: 1px solid $--color-light-blue-new;
+  margin: 0;
+  padding: 4px 0;
+  color: $gray-800;
   line-height: 1.4;
+  font-weight: 700;
   @include media('<navbarLg') {
     display: none;
   }

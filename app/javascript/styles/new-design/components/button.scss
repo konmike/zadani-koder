@@ -1,6 +1,8 @@
 .el-button {
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+
   &:hover {
     text-decoration: none;
   }
@@ -61,36 +63,82 @@
 .btn-premium {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-right: 2.666rem;
-  padding-left: 2.666rem;
+  padding-right: rem(30px);
+  padding-left: rem(30px);
   font-size: 1.4666rem;
   font-weight: 700;
 
   @include media-breakpoint-down(xs) {
     min-width: 150px;
-    padding-top: .8rem;
-    padding-bottom: .8rem;
-    padding-left: .53rem;
-    padding-right: .53rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.53rem;
+    padding-right: 0.53rem;
     font-size: 1rem;
   }
 }
 
 .el-button--small,
 .btn-mini {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-right: .66rem;
-  padding-left: .66rem;
-  font-size: .8rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.66rem;
+  padding-left: 0.66rem;
+  font-size: 0.8rem;
   font-weight: 400;
 }
 
-.el-button--invoice {
+.el-button--solid {
+  color: #ffffff;
+  background-color: $orange;
+  border-color: $orange;
+
+  &:hover {
+    color: #ffffff;
+    background-color: $orange-dark;
+    border-color: $orange-dark;
+  }
+}
+
+.el-button--outlined {
+  color: $blue-500;
+  border-color: $blue-light;
+
+  &:hover {
+    color: $blue-500;
+    background-color: $blue-light;
+  }
+}
+
+.el-button--login {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: rem(8px);
+
   &::before {
-    margin-right: 9px;
-    vertical-align: middle;
-    font-size: 28px;
+    content: '';
+    background-image: url('/assets/account-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.el-button--invoice {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: rem(8px);
+
+  &::before {
+    content: '';
+    background-image: url('/assets/invoice-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
 
     @include media-breakpoint-down(xs) {
       font-size: 20px;
@@ -98,7 +146,6 @@
     }
   }
 }
-
 
 .el-button-wrapper {
   margin-top: 20px;
